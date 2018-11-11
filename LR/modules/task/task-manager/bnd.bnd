@@ -1,0 +1,4 @@
+Bundle-Name: task-manager
+Bundle-SymbolicName: task.manager
+Bundle-Version: 1.0.0
+Export-Package: task.manager.constants

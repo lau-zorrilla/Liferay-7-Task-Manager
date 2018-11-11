@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
+
+<service-builder package-path="serviceBuilder">
+	<namespace>task</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="task" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+	<entity local-service="true" name="Task" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="taskId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+		<column name="finishDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="finished" type="boolean" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="taskId" />
+		</order>
+
+		<!-- Finder methods -->
+		
+		<finder name="ByUserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+
+		<finder name="ByUserIdAndFinished" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="finished" />
+		</finder>
+
+		<!-- References -->
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+</service-builder>
